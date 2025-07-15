@@ -16,7 +16,31 @@
 body {
   margin: 0;
   font-family: 'Inter', 'Segoe UI', 'Roboto', Arial, Helvetica, sans-serif;
-  background: var(--background-main);
+  background: #fff;
+}
+
+/* Figma-matched frame container for app core */
+.todo-frame {
+  width: 414px;
+  height: 896px;
+  margin: 0 auto;
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  /* optional: box-shadow for elevation in modern minimal */
+  box-shadow: 0 1.5px 10px 0 rgba(42,58,112,0.05);
+}
+
+@media (max-width: 415px) {
+  .todo-frame {
+    width: 100vw;
+    max-width: 100vw;
+    min-width: 100vw;
+  }
 }
 
 .App {

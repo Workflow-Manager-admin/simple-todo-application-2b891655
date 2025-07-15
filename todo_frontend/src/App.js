@@ -507,73 +507,79 @@ function App() {
   }, [editingId, editValue]);
 
   return (
-    <div
-      className="App"
-      style={{
-        background: BG_MAIN,
-        minHeight: "100vh",
-        paddingBottom: 80,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center"
-      }}
-      aria-label="Todo App Main"
-    >
-      <AppBar />
-      <main
-        style={{
-          width: "100%",
-          maxWidth: 480,
-          margin: "0 auto",
-          padding: "32px 12px 0px 12px",
-          minHeight: 440,
-        }}
-      >
-        {/* Add/Edit todo input */}
-        {editingId ? (
-          <TodoInput
-            value={editValue}
-            setValue={setEditValue}
-            onSave={handleUpdate}
-            disabled={false}
-            placeholder="Edit todo..."
-            editing={true}
-            onCancel={handleCancelEdit}
-          />
-        ) : (
-          <TodoInput
-            value={inputTitle}
-            setValue={setInputTitle}
-            onSave={handleAdd}
-            disabled={false}
-            placeholder="Add a new todo..."
-            editing={false}
-          />
-        )}
-
-        {/* The todo list */}
-        <TodoList
-          todos={todos}
-          onComplete={handleComplete}
-          onEdit={handleEdit}
-          onDelete={handleDelete}
-          editId={editingId}
-        />
-
-        {/* Floating Action Button (FAB) hidden for desktop, shown for mobile */}
-        {/* Figma uses a circular FAB for "Add" on mobile */}
-        {window.innerWidth < 600 && !editingId && (
-          <FloatingActionButton
-            onClick={() => {
-              setShowInputOnFab(true);
-              setTimeout(() => {
-                const el = document.querySelector('input[aria-label="Todo title"]');
-                if (el) el.focus();
-              }, 100);
+    <div style={{ background: "#fff" }}>
+      <div className="todo-frame">
+        <div
+          className="App"
+          style={{
+            background: "transparent",
+            minHeight: "100%",
+            paddingBottom: 0,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            flex: 1,
+          }}
+          aria-label="Todo App Main"
+        >
+          <AppBar />
+          <main
+            style={{
+              width: "100%",
+              maxWidth: 414,
+              margin: "0 auto",
+              padding: "32px 12px 0px 12px",
+              minHeight: 440,
+              background: "transparent",
             }}
-          />
-        )}
-      </main>
+          >
+            {/* Add/Edit todo input */}
+            {editingId ? (
+              <TodoInput
+                value={editValue}
+                setValue={setEditValue}
+                onSave={handleUpdate}
+                disabled={false}
+                placeholder="Edit todo..."
+                editing={true}
+                onCancel={handleCancelEdit}
+              />
+            ) : (
+              <TodoInput
+                value={inputTitle}
+                setValue={setInputTitle}
+                onSave={handleAdd}
+                disabled={false}
+                placeholder="Add a new todo..."
+                editing={false}
+              />
+            )}
+
+            {/* The todo list */}
+            <TodoList
+              todos={todos}
+              onComplete={handleComplete}
+              onEdit={handleEdit}
+              onDelete={handleDelete}
+              editId={editingId}
+            />
+
+            {/* Floating Action Button (FAB) hidden for desktop, shown for mobile */}
+            {/* Figma uses a circular FAB for "Add" on mobile */}
+            {window.innerWidth < 600 && !editingId && (
+              <FloatingActionButton
+                onClick={() => {
+                  setShowInputOnFab(true);
+                  setTimeout(() => {
+                    const el = document.querySelector('input[aria-label="Todo title"]');
+                    if (el) el.focus();
+                  }, 100);
+                }}
+              />
+            )}
+          </main>
+        </div>
+      </div>
     </div>
   );
 }
